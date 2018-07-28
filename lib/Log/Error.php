@@ -2,10 +2,12 @@
 
 namespace Abhijit\Library\Log;
 
+use Abhijit\Library\View\View;
+
+
 /**
  * Error and exception handler
  *
- * PHP version 7.0
  */
 class Error
 {
@@ -60,7 +62,9 @@ class Error
 
             error_log($message);
 
-            View::renderTemplate("$code.html");
+            $errorTemplate = $code . ".phtml";
+            $view = new View($errorTemplate);
+            echo $view;
         }
     }
 }

@@ -9,7 +9,6 @@ use Abhijit\Library\View\View;
 /**
  * Home controller
  *
- * PHP version 7.0
  */
 class Home extends BaseController
 {

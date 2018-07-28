@@ -8,7 +8,6 @@ use Abhijit\Library\Model;
 /**
  * Example user model
  *
- * PHP version 7.0
  */
 class User extends Model
 {

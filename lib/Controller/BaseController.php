@@ -5,7 +5,6 @@ namespace Abhijit\Library\Controller;
 /**
  * Base controller
  *
- * PHP version 7.0
  */
 abstract class BaseController
 {
