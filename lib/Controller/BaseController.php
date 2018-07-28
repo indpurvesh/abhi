@@ -13,7 +13,7 @@ abstract class BaseController
      * Parameters from the matched route
      * @var array
      */
-    protected $route_params = [];
+    protected $routeParams = [];
 
     /**
      * Class constructor
@@ -22,9 +22,19 @@ abstract class BaseController
      *
      * @return void
      */
-    public function __construct($route_params)
+    public function __construct($routeParams)
     {
-        $this->route_params = $route_params;
+        $this->routeParams = $routeParams;
+    }
+
+
+    /**
+     * Get All the Route Params for the Controller
+     * @return array $route_params;
+     */
+    public function allRouteParams() 
+    {
+        return $this->routeParams;
     }
 
 }
