@@ -1,0 +1,17 @@
+{
+    "name": "abhijit/test",
+    "description": "Abhijit Test App",
+    "require": {
+        "php": "^7.1.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Abhijit\\Library\\": "lib/",
+            "Abhijit\\App\\": "modules/app/",
+            "Tests\\": "tests"
+        }
+    }
+}
