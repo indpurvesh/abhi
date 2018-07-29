@@ -1,3 +1,27 @@
+
 <h1>Hello World From View File  </h1>
 
-<?php echo $name; ?>
+
+<?php 
+if (isset($artists) && count($artists) > 0):?>
+<div class="artist-list-wrapper">
+
+    <?php foreach ($artists['topartists']['artist'] as $artist) { ?>
+        <div class="artist-wrapper">
+        	<div class="artist-name">
+				<a href="<?php echo $home_url . 'viewartist?mbid=' . $artist['mbid']; ?>">
+					<?php echo $artist['name']; ?>
+				</a>
+			</div>
+			
+            <div class="artist-image">
+				<img src="<?php echo $artist['image'][1]['#text']; ?>" />
+			</div>
+
+        	<?php var_dump($artist); ?>
+        </div>
+        <?php } ?>
+</div>
+<?php else:?>
+	<?php  echo $artists;?>
+<?php endif;?>

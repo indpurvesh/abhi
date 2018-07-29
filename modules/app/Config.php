@@ -33,10 +33,39 @@ class Config
      * @var string
      */
     const DB_PASSWORD = 'your-database-password';
+	
+	/**
+     * API URL
+     * @var string
+     */
+	const LASTFM_API_URL = 'http://ws.audioscrobbler.com/2.0/';
+	/**
+     * API Key
+     * @var string
+     */
+	const LASTFM_API_KEY = 'bb873f48bd44d38b2cda7bf55ccca0dc';
+	
+	/**
+     * API Signature
+     * @var string
+     */
+	const LASTFM_API_SIGNATURE = 'fd860f81c99ca4668d03531b34809a89';
 
     /**
      * Show or hide error messages on screen
      * @var boolean
      */
     const SHOW_ERRORS = true;
+	
+	/**
+     * Default Country
+     * @var String
+     */
+    const DEFAULT_COUNTRY = 'Australia';
+	
+	/**
+     * Root URL
+     * @var String
+     */
+    const HOME_URL = 'http://localhost:8000/';
 }

@@ -4,7 +4,7 @@ namespace Abhijit\App\Controllers;
 
 use Abhijit\Library\Controller\BaseController;
 use Abhijit\Library\View\View;
-use Abhijit\App\Service\GeoTopArtist;
+use Abhijit\App\Service\ArtistInfo;
 
 
 /**
@@ -12,7 +12,7 @@ use Abhijit\App\Service\GeoTopArtist;
  *
  * PHP version 7.0
  */
-class Home extends BaseController
+class Artist extends BaseController
 {
 
     /**
@@ -22,10 +22,10 @@ class Home extends BaseController
      */
     public function indexAction()
     {
-        $apiService = new GeoTopArtist();
-		$topGeoArtist = $apiService->getGeoTopArtist();
-        
-       
+		//var_dump($_REQUEST['mbid']);
+        $apiService = new ArtistInfo();
+		$artistDetail = $apiService->getArtistInfo($_REQUEST['mbid']);
+		
 /*
 // API Url
 //$url = 'http://ws.audioscrobbler.com/2.0/?method=tag.gettopartists&tag=disco&perPage=100&page=2&api_key=bb873f48bd44d38b2cda7bf55ccca0dc&format=json';
@@ -45,6 +45,7 @@ $response = curl_exec($ch);
 curl_close($ch);
 // echo response output
 */
-        return new View('Home/index.phtml',['artists' => $topGeoArtist,'home_url' => 'test']);
+		//echo'<pre>';print_r($artistDetail);die;
+        return new View('Artist/index.phtml',array('artist' => $artistDetail,'page_title'=>$artistDetail['artist']['name'].' - Artist Info'));
     }
 }
