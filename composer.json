@@ -12,6 +12,9 @@
             "Abhijit\\Library\\": "lib/",
             "Abhijit\\App\\": "modules/app/",
             "Tests\\": "tests"
-        }
+        },
+        "files": [
+            "lib/helpers.php"
+        ]
     }
 }
