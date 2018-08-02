@@ -3,23 +3,44 @@
 namespace Abhijit\Library;
 
 use Abhijit\Library\Route\Router;
+use Abhijit\Library\Route\RouteComponent;
 
-class Application {
+class Application extends Container {
 
 
     protected $basePath;
+
+    public $app;
+
     protected $router;
+
+    protected $components = [
+        RouteComponent::class
+    ];
 
     public function __construct($path = "")
     {
         $this->basePath = $path;
-        $this->registerModules();
+        $this->registerInstance();
 
         $this->registerErrorHandler();
-        $this->registerRouter();
+        $this->registerComponents();
         
+        $this->registerModules();
     }
 
+
+    public function registerInstance() 
+    {
+        if (null === $this->app) {
+            $this->app = $this;
+        }
+    }
+
+    public function instance() 
+    {
+        return $this->app;
+    }
 
     public function registerModules() 
     {
@@ -35,19 +56,43 @@ class Application {
     }
 
 
-    public function registerRouter() 
+    public function registerComponents() 
     {
-        $this->router = new Router();
 
-        // Add the routes
-        $this->router->add('', ['controller' => 'Home', 'action' => 'index']);
-        $this->router->add('{controller}/{action}');
-        
+        foreach($this->components as $component) {
+            $componentClass = $this->resolveClass($component);
+            $componentClass->init();
+        }
+
+        foreach($this->components as $component) {
+            $componentClass = $this->resolveClass($component);
+            $componentClass->register();
+        }
     }
 
 
     public function run() 
     {
+        
         $this->router->dispatch($_SERVER['SCRIPT_NAME']);
+    }
+
+    public function singleton() 
+    {
+        
+
+    }
+
+    public function resolveClass($class) 
+    {
+        $object = new $class($this);
+
+        return $object;
+    }
+
+
+    public function bind($key , $object) 
+    {
+        $this->register($key , $object);
     }
 }
